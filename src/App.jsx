@@ -18,11 +18,36 @@ function App() {
         </a>
       </div>
       <h1>Currency Converter</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+      <div>
+      <label>
+        Amount:
+        <input type="number" />
+      </label>
+      <label>
+        From:
+        <select>
+          <option value="USD">USD</option>
+          <option value="EUR">EUR</option>
+          <option value="GBP">GBP</option>
+          {/* add more currencies here */}
+        </select>
+      </label>
+      <label>
+        To:
+        <select>
+          <option value="USD">USD</option>
+          <option value="EUR">EUR</option>
+          <option value="GBP">GBP</option>
+          <option value="SSP">SSP</option>
+          <option value="UGX">UGX</option>
+          {/* add more currencies here */}
+        </select>
+      </label>
+      <div>
+        Converted Amount:
       </div>
+    </div>
+
     </div>
   )
 }
