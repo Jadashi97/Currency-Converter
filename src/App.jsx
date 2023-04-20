@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 
-const api_key = "";
+// const api_key = '';
 
-const base_url = ``;
+// const base_url = `https://api.exchangeratesapi.io/latest?access_key=${api_key}`;
+const base_url = `https://api.exchangerate.host/latest?base=USD`;
 
 console.log(base_url);
 
@@ -16,19 +17,31 @@ function App() {
 
     useEffect(() => {
       async function fetchExhangeRate(){
-        const response = await fetch()
+        const response = await fetch(`${base_url}&base=${fromCurrency}&symbols=${toCurrency}`)
+        const data = await response.json();
+        console.log(data)
+        setExchageRate(data.rates[toCurrency]);
       }
-    })
+
+      fetchExhangeRate();
+    }, [fromCurrency, toCurrency]);
+
+
+    useEffect(()=> {
+      setConvertedAmount( amount / exhangeRate);
+    }, [amount, exhangeRate]);
+
 
     const handleAmountChange = (e) => {
       setAmount(parseFloat(e.target.value));
     }
 
+
     const handleFromCurrencyConverter = (e)=> {
       setFromCurrency(e.target.value);
     }
 
-    const handleToCurrencyConverter = () => {
+    const handleToCurrencyConverter = (e) => {
       setToCurrency(e.target.value);
     }
 
