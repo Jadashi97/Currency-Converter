@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 
-const api_key = PPPeRuqNakyRAQNemcHu92MjytsdDnji;
+const api_key = 'PPPeRuqNakyRAQNemcHu92MjytsdDnji';
 
-const base_url = `https://api.apilayer.com/exchangerates_data/live?base=USD&symbols=EUR,GBPaccess_key=${api_key}`;
-// const base_url = `https://api.exchangerate.host/latest?base=USD`;
+const base_url = `https://provider-api.apilayer.com/provider/stats/${api_key}`
 
-console.log(base_url);
+// console.log(base_url);
 
 function App() {
     const [amount, setAmount] = useState(0);
