@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 
-// const api_key = '';
+const api_key = PPPeRuqNakyRAQNemcHu92MjytsdDnji;
 
-// const base_url = `https://api.exchangeratesapi.io/latest?access_key=${api_key}`;
-const base_url = `https://api.exchangerate.host/latest?base=USD`;
+const base_url = `https://api.apilayer.com/exchangerates_data/live?base=USD&symbols=EUR,GBPaccess_key=${api_key}`;
+// const base_url = `https://api.exchangerate.host/latest?base=USD`;
 
 console.log(base_url);
 
@@ -17,10 +17,14 @@ function App() {
 
     useEffect(() => {
       async function fetchExhangeRate(){
-        const response = await fetch(`${base_url}&base=${fromCurrency}&symbols=${toCurrency}`)
-        const data = await response.json();
-        console.log(data)
-        setExchageRate(data.rates[toCurrency]);
+        try {
+          const response = await fetch(`${base_url}&base=${fromCurrency}&symbols=${toCurrency}`)
+          const data = await response.json();
+          console.log(data)
+          setExchageRate(data.rates[toCurrency]);
+        } catch (error) {
+          console.log("Not able to fetch currency data")
+        }
       }
 
       fetchExhangeRate();
