@@ -1,23 +1,33 @@
 import { useEffect, useState } from 'react'
-import './App.css'
+import './App.css';
 
-const api_key = 'PPPeRuqNakyRAQNemcHu92MjytsdDnji';
+var myHeaders = new Headers();
+myHeaders.append("apikey", "Akpu7bDYd7LIenw3xG1fk6JA1pEkpuLk");
 
-const base_url = `https://provider-api.apilayer.com/provider/stats/${api_key}`
+var requestOptions = {
+  method: 'GET',
+  redirect: 'follow',
+  headers: myHeaders
+};
 
-// console.log(base_url);
+// const api_key = 'Akpu7bDYd7LIenw3xG1fk6JA1pEkpuLk';
+
+// const base_url = `https://api.apilayer.com/fixer/latest?base=USD&symbols=EUR,GBP${api_key}`
+const base_url = 'https://api.apilayer.com/fixer/convert?to=to&from=from&amount=amount'
+
+console.log(base_url);
 
 function App() {
-    const [amount, setAmount] = useState(0);
+    const [amount, setAmount] = useState(" ");
     const [fromCurrency, setFromCurrency] = useState('USD');
-    const [toCurrency, setToCurrency] = useState("SSP");
+    const [toCurrency, setToCurrency] = useState("EUR");
     const [exhangeRate, setExchageRate] = useState(null);
     const [convertedAmount, setConvertedAmount] = useState(0);
 
     useEffect(() => {
       async function fetchExhangeRate(){
         try {
-          const response = await fetch(`${base_url}&base=${fromCurrency}&symbols=${toCurrency}`)
+          const response = await fetch(`${base_url}&base=${fromCurrency}&symbols=${toCurrency}`, requestOptions)
           const data = await response.json();
           console.log(data)
           setExchageRate(data.rates[toCurrency]);
