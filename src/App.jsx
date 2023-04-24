@@ -1,43 +1,43 @@
 import { useEffect, useState } from 'react'
 import './App.css';
 
-var myHeaders = new Headers();
-myHeaders.append("apikey", "Akpu7bDYd7LIenw3xG1fk6JA1pEkpuLk");
-
-var requestOptions = {
-  method: 'GET',
-  redirect: 'follow',
-  headers: myHeaders
-};
-
 // const api_key = 'Akpu7bDYd7LIenw3xG1fk6JA1pEkpuLk';
 
 // const base_url = `https://api.apilayer.com/fixer/latest?base=USD&symbols=EUR,GBP${api_key}`
-const base_url = 'https://api.apilayer.com/fixer/convert?to=to&from=from&amount=amount'
+const BASE_URL = 'https://api.exchangeratesapi.io/v1';
 
-console.log(base_url);
+const params = (paramsObj) => {
+  return new URLSearchParams({
+    access_key: 'IVQpm3CkfAWredpe4U37lfsEZoI7XFC1',
+    ...paramsObj
+  })
+}
+
+const getLatest = (options) => {
+  fetch(`${BASE_URL}/latest?${params(options)}`)
+  .then(res => res.json())
+  .then(console.log);
+}
+
+getLatest();
 
 function App() {
-    const [amount, setAmount] = useState(" ");
+    const [amount, setAmount] = useState('');
     const [fromCurrency, setFromCurrency] = useState('USD');
     const [toCurrency, setToCurrency] = useState("EUR");
     const [exhangeRate, setExchageRate] = useState(null);
     const [convertedAmount, setConvertedAmount] = useState(0);
 
-    useEffect(() => {
-      async function fetchExhangeRate(){
-        try {
-          const response = await fetch(`${base_url}&base=${fromCurrency}&symbols=${toCurrency}`, requestOptions)
-          const data = await response.json();
-          console.log(data)
-          setExchageRate(data.rates[toCurrency]);
-        } catch (error) {
-          console.log("Not able to fetch currency data")
-        }
-      }
 
-      fetchExhangeRate();
-    }, [fromCurrency, toCurrency]);
+
+    // useEffect(() => {
+    //       // const response = await fetch(`${base_url}&base=${fromCurrency}&symbols=${toCurrency}`, requestOptions)
+    //       fetch(BASE_URL)
+    //         .then(res => res.json())
+    //         .then(data => console.log(data))
+    //       // setExchageRate(data.rates[toCurrency]);
+    //       // console.log(data)
+    // },[]);
 
 
     useEffect(()=> {
@@ -68,7 +68,7 @@ function App() {
           <input 
             value={amount}
             onChange={handleAmountChange}
-            type="number" 
+            type="text" 
             name="currency" 
             className="block w-full rounded-md border-0 py-1.5 pl-7 pr-20 text-gray-900 ring-1 ring-inset" 
           />
@@ -101,4 +101,4 @@ function App() {
     )
 }
 
-export default App
+export default App;
