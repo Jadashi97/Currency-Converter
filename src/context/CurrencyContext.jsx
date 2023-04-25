@@ -1,11 +1,11 @@
-import React,{useState, createContext} from 'react';
+import {useState, createContext} from 'react';
 
 export const CurrencyContext = createContext();
 
-const CurrencyProvider = () => {
+const CurrencyProvider = ({children}) => {
     const [fromCurrency, setFromCurrency] = useState("🇺🇸 USD - United States");
-    const [toCurrency, setToCurrency] = useState("🇸🇸 SSD - Australia");
-    const [firstAmount, setFirstAmount] = useState(" ");
+    const [toCurrency, setToCurrency] = useState("🇸🇸 SSP - South Sudan");
+    const [firstAmount, setFirstAmount] = useState("");
 
     const value = {
         fromCurrency,

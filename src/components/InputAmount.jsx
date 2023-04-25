@@ -1,23 +1,24 @@
-import React, { useContext } from 'react';
-import {Grid, InputAdornment, TextField} from "@mui/material";
+import { Grid, InputAdornment, TextField } from "@mui/material"
+import { useContext } from "react"
+import { CurrencyContext } from "../context/CurrencyContext"
 
-function InputAmount() {
-    const {firstAmount, setFirstAmount} = useContext();
+const InputAmout = () => {
+  const {firstAmount, setFirstAmount} = useContext(CurrencyContext);
 
-    return (
-      <Grid>
-        <TextField
-          value={firstAmount}
-          onChange={e => setFirstAmount(e.target.value)}
-          label='Amount'
-          fullWidth
-          InputProps={{
-            type: "number",
-            startAdornment: <InputAdornment position='start'>$</InputAdornment>
-          }}
-        />
-      </Grid>
-    )
+  return (
+    <Grid item xs={12} md>
+      <TextField
+        value={firstAmount}
+        onChange={e => setFirstAmount(e.target.value)}
+        label="Amount"
+        fullWidth
+        InputProps={{
+          type: "number",
+          startAdornment: <InputAdornment position="start">$</InputAdornment>
+        }}
+      />
+    </Grid>
+  )
 }
 
-export default InputAmount;
+export default InputAmout

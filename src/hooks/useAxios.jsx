@@ -3,7 +3,7 @@ import axios from 'axios';
 
 
 
-const useAxios = () => {
+const useAxios = (url) => {
     const [data, setData] = useState([]);
     const [error, setError] = useState(null);
     const [loaded, setLoaded] = useState(false);
