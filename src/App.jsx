@@ -31,10 +31,10 @@ function App(){
           params: {
             apikey: "n2TRIDefzxomqgR72oKenrwxZpm0lvg2p57bEK5r",
             base_currency: "USD",
-            currencies: "SSP",
+            currencies: "GBP",
           }
         })
-        .then(response => setResultCurrency(response.data.data["SSP"]))
+        .then(response => setResultCurrency(response.data.data["GBP"]))
         .catch(error => console.log(error))
       }
     }, [firstAmount, fromCurrency, toCurrency])
