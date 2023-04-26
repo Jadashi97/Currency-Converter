@@ -5,7 +5,7 @@ import useAxios from '../hooks/useAxios';
 const SelectCountry = (props) => {
   const {value, setValue, label} = props;
   const [data, loaded, error] = useAxios("https://restcountries.com/v3.1/all");
-  console.log(data)
+  // console.log(data)
 
   if(loaded){
     return (

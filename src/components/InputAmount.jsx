@@ -21,4 +21,4 @@ const InputAmout = () => {
   )
 }
 
-export default InputAmout
+export default InputAmout;

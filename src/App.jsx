@@ -17,6 +17,7 @@ function App(){
       toCurrency,
       setToCurrency,
       firstAmount,
+      setFristAmount,
     } = useContext(CurrencyContext);
 
     const [resultCurrency, setResultCurrency] = useState(0);
@@ -28,12 +29,12 @@ function App(){
       if(firstAmount){
         axios("https://api.freecurrencyapi.com/v1/latest",{
           params: {
-            apikey: import.meta.env.API_KEY,
-            base_currency: codeFromCurrency,
-            currencies: codeToCurrency
+            apikey: "n2TRIDefzxomqgR72oKenrwxZpm0lvg2p57bEK5r",
+            base_currency: "USD",
+            currencies: "SSP",
           }
         })
-        .then(response => setResultCurrency(response.data.data[codeToCurrency]))
+        .then(response => setResultCurrency(response.data.data["SSP"]))
         .catch(error => console.log(error))
       }
     }, [firstAmount, fromCurrency, toCurrency])
@@ -54,12 +55,14 @@ function App(){
 
     return (
       <Container maxWidth="md" sx={boxStyles}>
-        <Typography variant='h5' sx={{marginBottom: "2rem"}}>Wake Up and Track the Currencies!!</Typography>
+        <Typography variant='h5' sx={{marginBottom: "2rem"}}>We dont need Dahabshill/Western Union/Remitly</Typography>
+        <Typography variant='h3' sx={{marginBottom: "2rem"}}>Lets build our own shit</Typography>
+        <Typography variant='h4' sx={{marginBottom: "2rem", fontWeight:"bold"}}>Rasulu Coming Soon!!!!</Typography>
         <Grid container spacing={2}>
           <InputAmount/>
           <SelectCountry value={fromCurrency} setValue={setFromCurrency} label="From"/>
           <SwitchCurrency/>
-          <SelectCountry value={toCurrency} setValue={setFromCurrency} label="To"/>
+          <SelectCountry value={toCurrency} setValue={setToCurrency} label="To"/>
         </Grid>
 
         {firstAmount ? (
