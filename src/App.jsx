@@ -23,18 +23,19 @@ function App(){
     const [resultCurrency, setResultCurrency] = useState(0);
     const codeFromCurrency = fromCurrency.split(" ")[1];
     const codeToCurrency = toCurrency.split(" ")[1];
+    console.log(resultCurrency);
 
 
     useEffect(() => {
       if(firstAmount){
         axios("https://api.freecurrencyapi.com/v1/latest",{
           params: {
-            apikey: "n2TRIDefzxomqgR72oKenrwxZpm0lvg2p57bEK5r",
-            base_currency: "USD",
-            currencies: "GBP",
+            apikey: import.meta.env.VITE_API_KEY,
+            base_currency: codeFromCurrency,
+            currencies: codeToCurrency,
           }
         })
-        .then(response => setResultCurrency(response.data.data["GBP"]))
+        .then(response => setResultCurrency(response.data.data[codeToCurrency]))
         .catch(error => console.log(error))
       }
     }, [firstAmount, fromCurrency, toCurrency])
