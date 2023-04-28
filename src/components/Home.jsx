@@ -1,7 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Container} from "@mui/material";
+import { createUserWithEmailAndPassword } from 'firebase/auth';
+import {auth} from "firebase-config.js";
 
 const Home = () => {
+    const [registerEmail, setRegisterEmail] = useState(" ");
+    const [registerPassword, setRegisterPassword] = useState(" ");
+    const [loginEmail, setLoginEmail] = useState(" ");
+    const [loginPassword, setLoginPassword] = useState(" ");
+
+
+    const register = async() => {
+        try {
+            const user = await createUserWithEmailAndPassword(
+                auth,
+                registerEmail,
+                registerPassword
+            )
+        } catch (error) {
+            console.log(error.message)
+        }
+    }
+
+    const login = async() => {
+
+    }
+
+    const logout = async() => {
+
+    }
 
 
     const boxStyles={
