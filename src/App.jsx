@@ -3,6 +3,7 @@ import './App.css';
 import InputAmount from './components/inputAmount';
 import SelectCountry from './components/selectCountry';
 import SwitchCurrency from './components/switchCurrency';
+import Home from './components/Home';
 import { Container, Typography, Grid, Box, Link } from "@mui/material";
 import {CurrencyContext} from './context/CurrencyContext';
 import axios from 'axios';
@@ -55,10 +56,12 @@ function App(){
 
 
     return (
+      <div>
+      <Home/>
+ 
       <Container maxWidth="md" sx={boxStyles}>
-        <Typography variant='h5' sx={{marginBottom: "2rem"}}>We dont need Dahabshill/Western Union/Remitly</Typography>
-        <Typography variant='h3' sx={{marginBottom: "2rem"}}>Lets build our own shit</Typography>
         <Typography variant='h4' sx={{marginBottom: "2rem", fontWeight:"bold"}}>Rasulu Coming Soon!!!!</Typography>
+        <Typography variant='h5' sx={{marginBottom: "2rem"}}>We dont need Dahabshill/Western Union/Remitly</Typography>
         <Grid container spacing={2}>
           <InputAmount/>
           <SelectCountry value={fromCurrency} setValue={setFromCurrency} label="From"/>
@@ -76,6 +79,7 @@ function App(){
             <Link>Lets Get in Touch!</Link>
         </Typography>
       </Container>
+      </div>
     );
 };
 
