@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Container} from "@mui/material";
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import {auth} from "../firebase-config";
 
 const Home = () => {
@@ -10,59 +10,66 @@ const Home = () => {
     const [loginPassword, setLoginPassword] = useState(" ");
 
 
-    const register = async() => {
+    const register = async () => {
         try {
-            const user = await createUserWithEmailAndPassword(
-                auth,
-                registerEmail,
-                registerPassword
-            );
-            console.log(user)
+          const user = await createUserWithEmailAndPassword(
+            auth,
+            registerEmail,
+            registerPassword
+          );
+          console.log(user);
         } catch (error) {
-            console.log(error.message)
+          console.log(error.message);
         }
     };
 
     const login = async() => {
-
-    }
+        try {
+            const login = await signInWithEmailAndPassword(
+            auth, 
+            loginEmail, 
+            loginPassword
+            );
+            console.log(user)
+        } catch (error) {
+            console.log(error.message);
+        }
+    };
 
     const logout = async() => {
-
+        await signOut(auth);
     }
 
 
     const boxStyles={
         background: "#fdfdfd",
-        marginTop: "10%",
+        marginTop: "7%",
         textAlign: "center",
         color: "#222",
         minHeight: "10rem",
         borderRadius: 2,
-        padding: "4rem 2rem",
+        padding: "3rem 2rem",
         boxShadow: "0px 10px 15px -3px rgb(0, 0, 0, 0.1)",
         position: "relative"
     }
 
     return (
-        <Container maxWidth="md" style={boxStyles}>
+        <Container maxWidth="xs" style={boxStyles}>
                 <div>
                     <h3>Register User</h3>
                     <input 
                         type="email" 
-                        id="stacked-email" 
                         placeholder="Email" 
-                        onChange= {( (event)=> {
+                        onChange= {(event)=> {
                             setRegisterEmail(event.target.value);
-                        })}
+                        }}
                     />
                     <input 
                         type="password" 
-                        id="stacked-password" 
                         placeholder="Password" 
-                        onChange= {( (event)=> {
-                            setRegisterEmail(event.target.value);
-                        })}
+                        onChange= {(event)=> {
+                            setRegisterPassword(event.target.value);
+                        }}
                     />
                     <button onClick={register}>Create User</button>
                 </div>
@@ -71,15 +78,19 @@ const Home = () => {
                     <h3>Login</h3>
                     <input 
                         type="email" 
-                        id="stacked-email" 
                         placeholder="Email" 
+                        onChange={(e)=> {
+                            setLoginEmail(e.target.value)
+                        }}
                     />
                     <input 
                         type="password" 
-                        id="stacked-password" 
                         placeholder="Password" 
+                        onChange={(e)=> {
+                            setLoginPassword(e.target.value)
+                        }}
                     />
-                    <button>Login in</button>
+                    <button onClick={login}>Login in</button>
                 </div>
         </Container>
     )

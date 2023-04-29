@@ -24,7 +24,7 @@ function App(){
     const [resultCurrency, setResultCurrency] = useState(0);
     const codeFromCurrency = fromCurrency.split(" ")[1];
     const codeToCurrency = toCurrency.split(" ")[1];
-    // console.log(resultCurrency);
+    console.log(resultCurrency);
 
 
     useEffect(() => {
