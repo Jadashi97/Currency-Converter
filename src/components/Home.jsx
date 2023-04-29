@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import { Container} from "@mui/material";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { 
+    createUserWithEmailAndPassword, 
+    signInWithEmailAndPassword, 
+    onAuthStateChanged,
+} from 'firebase/auth';
 import {auth} from "../firebase-config";
 
 const Home = () => {
@@ -9,6 +13,11 @@ const Home = () => {
     const [loginEmail, setLoginEmail] = useState(" ");
     const [loginPassword, setLoginPassword] = useState(" ");
 
+    const [user, setUser] = useState({});
+
+    onAuthStateChanged(auth, (currentUser)=> {
+        setUser(currentUser);
+    })
 
     const register = async () => {
         try {
@@ -39,6 +48,8 @@ const Home = () => {
     const logout = async() => {
         await signOut(auth);
     }
+
+
 
 
     const boxStyles={
@@ -91,6 +102,12 @@ const Home = () => {
                         }}
                     />
                     <button onClick={login}>Login in</button>
+                </div>
+                <br />
+                <div>
+                    <h4>User Logged In:</h4>
+                    {user?.email}
+                    <button onClick={logout}>Sign Out</button>
                 </div>
         </Container>
     )
