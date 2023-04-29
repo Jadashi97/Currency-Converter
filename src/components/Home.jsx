@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Container} from "@mui/material";
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import {auth} from "firebase-config.js";
+import {auth} from "../firebase-config";
 
 const Home = () => {
     const [registerEmail, setRegisterEmail] = useState(" ");
@@ -16,11 +16,12 @@ const Home = () => {
                 auth,
                 registerEmail,
                 registerPassword
-            )
+            );
+            console.log(user)
         } catch (error) {
             console.log(error.message)
         }
-    }
+    };
 
     const login = async() => {
 
@@ -45,13 +46,41 @@ const Home = () => {
 
     return (
         <Container maxWidth="md" style={boxStyles}>
-            <form class="pure-form pure-form-stacked">
-                    <label for="stacked-email">Email</label>
-                    <input type="email" id="stacked-email" placeholder="Email" />
-                    <label for="stacked-password">Password</label>
-                    <input type="password" id="stacked-password" placeholder="Password" />
-                    <button type="submit" class="pure-button pure-button-primary">Sign in</button>
-            </form>
+                <div>
+                    <h3>Register User</h3>
+                    <input 
+                        type="email" 
+                        id="stacked-email" 
+                        placeholder="Email" 
+                        onChange= {( (event)=> {
+                            setRegisterEmail(event.target.value);
+                        })}
+                    />
+                    <input 
+                        type="password" 
+                        id="stacked-password" 
+                        placeholder="Password" 
+                        onChange= {( (event)=> {
+                            setRegisterEmail(event.target.value);
+                        })}
+                    />
+                    <button onClick={register}>Create User</button>
+                </div>
+                <br />
+                <div>
+                    <h3>Login</h3>
+                    <input 
+                        type="email" 
+                        id="stacked-email" 
+                        placeholder="Email" 
+                    />
+                    <input 
+                        type="password" 
+                        id="stacked-password" 
+                        placeholder="Password" 
+                    />
+                    <button>Login in</button>
+                </div>
         </Container>
     )
 }

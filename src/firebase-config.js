@@ -1,6 +1,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { getAuth } from "firebase/auth";
 // import { getDatabase } from "firebase/database";
 
 const firebaseConfig = {
@@ -10,7 +11,7 @@ const firebaseConfig = {
   storageBucket: "currency-converter-app-4644f.appspot.com",
   messagingSenderId: "1057758391737",
   appId: "1:1057758391737:web:76ab114f908e33ab67da68",
-  measurementId: "G-RYVNQBGWWW"
+  measurementId: "G-RYVNQBGWWW",
 };
 
 // Initialize Firebase
