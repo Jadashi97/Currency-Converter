@@ -27,19 +27,19 @@ function App(){
     console.log(resultCurrency);
 
 
-    useEffect(() => {
-      if(firstAmount){
-        axios("https://api.freecurrencyapi.com/v1/latest",{
-          params: {
-            apikey: import.meta.env.VITE_API_KEY,
-            base_currency: codeFromCurrency,
-            currencies: codeToCurrency,
-          }
-        })
-        .then(response => setResultCurrency(response.data.data[codeToCurrency]))
-        .catch(error => console.log(error))
-      }
-    }, [firstAmount, fromCurrency, toCurrency])
+    // useEffect(() => {
+    //   if(firstAmount){
+    //     axios("https://api.freecurrencyapi.com/v1/latest",{
+    //       params: {
+    //         apikey: import.meta.env.VITE_API_KEY,
+    //         base_currency: codeFromCurrency,
+    //         currencies: codeToCurrency,
+    //       }
+    //     })
+    //     .then(response => setResultCurrency(response.data.data[codeToCurrency]))
+    //     .catch(error => console.log(error))
+    //   }
+    // }, [firstAmount, fromCurrency, toCurrency])
 
 
     const boxStyles={

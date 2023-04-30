@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container} from "@mui/material";
+import { Container, TextField} from "@mui/material";
 import { 
     createUserWithEmailAndPassword, 
     signInWithEmailAndPassword, 
@@ -66,9 +66,11 @@ const Home = () => {
 
     return (
         <Container maxWidth="xs" style={boxStyles}>
+            <form>
                 <div>
                     <h3>Register User</h3>
                     <input 
+                        value={registerEmail}
                         type="email" 
                         placeholder="Email" 
                         onChange= {(event)=> {
@@ -76,6 +78,7 @@ const Home = () => {
                         }}
                     />
                     <input 
+                        value={registerPassword}
                         type="password" 
                         placeholder="Password" 
                         onChange= {(event)=> {
@@ -91,14 +94,14 @@ const Home = () => {
                         type="email" 
                         placeholder="Email" 
                         onChange={(e)=> {
-                            setLoginEmail(e.target.value)
+                            setLoginEmail(e.target.value);
                         }}
                     />
                     <input 
                         type="password" 
                         placeholder="Password" 
                         onChange={(e)=> {
-                            setLoginPassword(e.target.value)
+                            setLoginPassword(e.target.value);
                         }}
                     />
                     <button onClick={login}>Login in</button>
@@ -109,6 +112,7 @@ const Home = () => {
                     {user?.email}
                     <button onClick={logout}>Sign Out</button>
                 </div>
+            </form>
         </Container>
     )
 }
