@@ -1,9 +1,9 @@
 import { useEffect, useState, useContext } from "react";
 import "./App.css";
-import InputAmount from "./components/inputAmount";
+import InputAmount from "./components/InputAmount";
 import SelectCountry from "./components/selectCountry";
 import SwitchCurrency from "./components/switchCurrency";
-import Home from "./components/Home";
+// import Home from "./components/Home";
 import { Container, Typography, Grid, Box, Link } from "@mui/material";
 import { CurrencyContext } from "./context/CurrencyContext";
 import axios from "axios";
