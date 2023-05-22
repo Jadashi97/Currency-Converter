@@ -1,8 +1,8 @@
 import { useEffect, useState, useContext } from "react";
 import "./App.css";
 import InputAmount from "./components/InputAmount";
-import SelectCountry from "./components/selectCountry";
 import SwitchCurrency from "./components/SwitchCurrency.jsx";
+import SelectRegion from "./components/SelectRegion";
 // import Home from "./components/Home";
 import { Container, Typography, Grid, Box, Link } from "@mui/material";
 import { CurrencyContext } from "./context/CurrencyContext";
@@ -65,13 +65,13 @@ function App() {
         </Typography>
         <Grid container spacing={2}>
           <InputAmount />
-          <SelectCountry
+          <SelectRegion
             value={fromCurrency}
             setValue={setFromCurrency}
             label="From"
           />
           <SwitchCurrency />
-          <SelectCountry
+          <SelectRegion
             value={toCurrency}
             setValue={setToCurrency}
             label="To"
