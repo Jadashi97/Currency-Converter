@@ -23,19 +23,52 @@ function App() {
   const codeToCurrency = toCurrency.split(" ")[1];
   console.log(resultCurrency);
 
-  // useEffect(() => {
-  //   if(firstAmount){
-  //     axios("https://api.freecurrencyapi.com/v1/latest",{
-  //       params: {
-  //         apikey: import.meta.env.VITE_API_KEY,
-  //         base_currency: codeFromCurrency,
-  //         currencies: codeToCurrency,
-  //       }
-  //     })
-  //     .then(response => setResultCurrency(response.data.data[codeToCurrency]))
-  //     .catch(error => console.log(error))
-  //   }
-  // }, [firstAmount, fromCurrency, toCurrency])
+  useEffect(() => {
+    if (firstAmount) {
+      const appId = "63438de6bc7c4d97ab9dc5e54cd42a4a";
+
+      axios
+        .get(`https://openexchangerates.org/api/latest.json?app_id=${appId}`)
+        .then((response) => {
+          const data = response.data;
+          // Process the response data
+          const rates = data.rates;
+          const baseCurrency = data.base;
+
+          // Use the rates and baseCurrency in your app
+          console.log(`Base Currency: ${baseCurrency}`);
+          console.log(`Exchange Rates:`);
+          for (const currency in rates) {
+            console.log(`${currency}: ${rates[currency]}`);
+          }
+        })
+        .catch((error) => {
+          console.error("Error:", error);
+        });
+    }
+
+    //   axios
+    //     .get(`https://openexchangerates.org/api/latest.json?app_id=${appId}`)
+    //     //  {
+    //     //   params: {
+    //     //     apikey: import.meta.env.VITE_API_KEY,
+    //     //     base_currency: codeFromCurrency,
+    //     //     currencies: codeToCurrency,
+    //     //   },
+    //     // })
+    //     .then((response) => {
+    //       const data = response.data;
+    //       const rates = data.rates;
+
+    //       const base_currency = data.base;
+    //       codeFromCurrency === base_currency;
+    //       codeToCurrency === rates;
+
+    //       setResultCurrency(response.data.data[codeToCurrency]);
+    //     })
+    //     .catch((error) => console.log(error));
+    // }
+  }, [firstAmount, fromCurrency, toCurrency]);
 
   const boxStyles = {
     background: "#fdfdfd",
